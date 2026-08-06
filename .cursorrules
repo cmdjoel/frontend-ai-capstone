@@ -1,0 +1,16 @@
+# Cursor Rules
+
+## Project Stack
+
+- Node.js (LTS)
+- Git
+- GitHub
+- Cursor
+
+## Coding Conventions
+
+- Use meaningful variable and function names.
+- Keep code modular and readable.
+- Follow consistent formatting.
+- Use Conventional Commits.
+- Keep the README updated.
