@@ -1,16 +1,37 @@
-# Cursor Rules
+# StudyFlow Cursor Rules
 
-## Project Stack
+## Tech Stack
 
-- Node.js (LTS)
-- Git
-- GitHub
-- Cursor
+- Use Next.js App Router with TypeScript.
+- Use Tailwind CSS for styling.
+- Do not use the `any` type unless absolutely necessary.
 
-## Coding Conventions
+## Forms
 
-- Use meaningful variable and function names.
-- Keep code modular and readable.
-- Follow consistent formatting.
-- Use Conventional Commits.
-- Keep the README updated.
+- Use React Hook Form for all forms.
+- Use Zod for validation.
+- Every form must include visible labels and validation error messages.
+- Disable submit buttons while forms are submitting.
+
+## Data
+
+- Store user settings in localStorage until a backend is added.
+- Validate any data loaded from localStorage before using it.
+- Handle invalid or missing data gracefully.
+
+## Components
+
+- Create reusable components instead of duplicating UI.
+- Keep business logic separate from UI where possible.
+
+## Accessibility
+
+- Every form input must have an associated label.
+- Ensure keyboard navigation works correctly.
+- Display validation errors using accessible markup.
+
+## AI Output
+
+- Verify all AI-generated code by running the application.
+- Run tests before considering a feature complete.
+- Never assume AI-generated code is correct without verification.
