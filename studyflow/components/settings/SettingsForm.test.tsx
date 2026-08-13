@@ -6,13 +6,6 @@ import { SETTINGS_STORAGE_KEY } from "@/lib/settings/storage";
 import * as storageModule from "@/lib/settings/storage";
 import type { SettingsFormValues } from "@/lib/settings/schema";
 
-const savedSettings: SettingsFormValues = {
-  examDate: "2026-08-10",
-  studyHoursPerDay: 5,
-  quizDifficulty: "Hard",
-  aiExplanationDetail: "Detailed",
-};
-
 function formatLocalDate(date: Date): string {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -26,6 +19,13 @@ function getFutureDateString(daysFromNow = 7): string {
   date.setHours(0, 0, 0, 0);
   return formatLocalDate(date);
 }
+
+const savedSettings: SettingsFormValues = {
+  examDate: getFutureDateString(7),
+  studyHoursPerDay: 5,
+  quizDifficulty: "Hard",
+  aiExplanationDetail: "Detailed",
+};
 
 function getPastDateString(daysAgo = 1): string {
   const date = new Date();

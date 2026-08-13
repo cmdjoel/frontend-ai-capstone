@@ -6,8 +6,12 @@ import {
 } from "@/lib/settings/storage";
 import type { SettingsFormValues } from "@/lib/settings/schema";
 
+const futureDate = new Date();
+futureDate.setDate(futureDate.getDate() + 7);
+const futureDateString = futureDate.toISOString().split("T")[0];
+
 const validSettings: SettingsFormValues = {
-  examDate: "2026-08-07",
+  examDate: futureDateString,
   studyHoursPerDay: 3,
   quizDifficulty: "Hard",
   aiExplanationDetail: "Detailed",

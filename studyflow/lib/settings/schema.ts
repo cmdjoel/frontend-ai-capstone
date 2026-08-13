@@ -35,22 +35,12 @@ export const settingsSchema = z.object({
     })
     .min(1, "Study hours must be at least 1")
     .max(12, "Study hours cannot exceed 12"),
-  quizDifficulty: z
-    .string()
-    .min(1, "Preferred quiz difficulty is required")
-    .pipe(
-      z.enum(QUIZ_DIFFICULTY_OPTIONS, {
-        errorMap: () => ({ message: "Preferred quiz difficulty is required" }),
-      }),
-    ),
-  aiExplanationDetail: z
-    .string()
-    .min(1, "AI explanation detail is required")
-    .pipe(
-      z.enum(AI_EXPLANATION_OPTIONS, {
-        errorMap: () => ({ message: "AI explanation detail is required" }),
-      }),
-    ),
+  quizDifficulty: z.enum(QUIZ_DIFFICULTY_OPTIONS, {
+    errorMap: () => ({ message: "Preferred quiz difficulty is required" }),
+  }),
+  aiExplanationDetail: z.enum(AI_EXPLANATION_OPTIONS, {
+    errorMap: () => ({ message: "AI explanation detail is required" }),
+  }),
 });
 
 export type SettingsFormValues = z.infer<typeof settingsSchema>;
