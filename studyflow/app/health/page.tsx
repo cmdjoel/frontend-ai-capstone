@@ -85,7 +85,7 @@ export default async function HealthPage() {
                   <h2 className="text-lg font-semibold text-card-foreground">
                     Live Server Fetch Verification
                   </h2>
-                  <span className="rounded bg-secondary px-2 py-1 font-mono text-xs text-secondary-foreground">
+                  <span className="max-w-full rounded bg-secondary px-2 py-1 font-mono text-xs text-secondary-foreground break-all">
                     GET https://jsonplaceholder.typicode.com/todos/1
                   </span>
                 </div>
