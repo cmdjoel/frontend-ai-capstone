@@ -24,3 +24,41 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Subtle Modern Chat Scrollbar */
+.chat-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(161, 161, 170, 0.25) transparent;
+}
+
+.chat-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(161, 161, 170, 0.25);
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+
+.chat-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(161, 161, 170, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  .chat-scrollbar {
+    scrollbar-color: rgba(113, 113, 122, 0.3) transparent;
+  }
+
+  .chat-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(113, 113, 122, 0.3);
+  }
+
+  .chat-scrollbar:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(161, 161, 170, 0.5);
+  }
+}
