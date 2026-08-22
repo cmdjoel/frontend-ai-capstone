@@ -26,7 +26,16 @@ const mockSession: StudySession = {
   ],
   quizAnswers: [{ questionId: "q1", selectedAnswer: 1, isCorrect: true }],
   weakAreas: [],
-  studyPlan: "Review binary search trees tomorrow.",
+  studyPlan: [
+    {
+      id: "p1",
+      title: "Day 1",
+      focus: "Binary search",
+      tasks: ["Review binary search trees"],
+      duration: "45 mins",
+      priority: "high",
+    },
+  ],
 };
 
 describe("study session storage", () => {

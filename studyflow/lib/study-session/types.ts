@@ -25,6 +25,15 @@ export interface QuizAnswer {
   isCorrect: boolean;
 }
 
+export interface StudyPlanSession {
+  id: string;
+  title: string;
+  focus: string;
+  tasks: string[];
+  duration: string;
+  priority: "high" | "medium" | "low";
+}
+
 export interface StudySession {
   id: string;
   documentName: string;
@@ -37,5 +46,5 @@ export interface StudySession {
   quiz: QuizQuestion[] | null;
   quizAnswers: QuizAnswer[] | null;
   weakAreas: string[] | null;
-  studyPlan: string | null;
+  studyPlan: StudyPlanSession[] | null;
 }
