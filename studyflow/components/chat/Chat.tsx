@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { useChat } from "@ai-sdk/react";
+import { useStudySession } from "@/context/StudySessionContext";
+import type { StudyChatContext } from "@/app/api/chat/route";
 import { MarkdownContent } from "./MarkdownContent";
 
-const SUGGESTED_PROMPTS = [
+const DEFAULT_SUGGESTED_PROMPTS = [
   "Explain photosynthesis with key active recall questions.",
   "Create a 3-day study plan for organic chemistry.",
   "What is the difference between Mitosis and Meiosis?",
@@ -12,6 +15,8 @@ const SUGGESTED_PROMPTS = [
 ];
 
 export function Chat() {
+  const { session, isHydrated } = useStudySession();
+
   const [input, setInput] = useState("");
   const [isAtBottom, setIsAtBottom] = useState(true);
   const shouldAutoScrollRef = useRef(true);
@@ -19,10 +24,79 @@ export function Chat() {
   const messagesContentRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  // Prepare contextual study session data for the AI Tutor
+  const studyContext: StudyChatContext | undefined = useMemo(() => {
+    if (!session) return undefined;
+
+    let quizPerformance: StudyChatContext["quizPerformance"] = undefined;
+    if (session.quiz && session.quizAnswers && session.quiz.length > 0) {
+      const totalQuestions = session.quiz.length;
+      const correctCount = session.quizAnswers.filter((a) => a.isCorrect).length;
+      const incorrectCount = totalQuestions - correctCount;
+      const percentage = Math.round((correctCount / totalQuestions) * 100);
+      quizPerformance = {
+        totalQuestions,
+        correctCount,
+        incorrectCount,
+        percentage,
+      };
+    }
+
+    return {
+      documentName: session.documentName,
+      documentType: session.documentType,
+      sourceText: session.sourceText,
+      topics: session.topics ?? undefined,
+      summary: session.summary ?? undefined,
+      weakAreas: session.weakAreas ?? undefined,
+      quizPerformance,
+      studyPlan: session.studyPlan?.map((p) => ({
+        title: p.title,
+        focus: p.focus,
+        duration: p.duration,
+        priority: p.priority,
+      })),
+    };
+  }, [session]);
+
   const { messages, sendMessage, stop, status, error } = useChat();
 
   const isLoading = status === "submitted" || status === "streaming";
   const isThinking = status === "submitted";
+
+  // Contextual suggested prompts
+  const suggestedPrompts = useMemo(() => {
+    if (!session) {
+      return DEFAULT_SUGGESTED_PROMPTS;
+    }
+
+    const prompts: string[] = [];
+
+    if (session.weakAreas && session.weakAreas.length > 0) {
+      prompts.push(`Quiz me on my weak area: "${session.weakAreas[0]}"`);
+      prompts.push(
+        `Explain "${session.weakAreas[0]}" in simple terms with an analogy.`
+      );
+    } else if (session.topics && session.topics.length > 0) {
+      prompts.push(`Quiz me on "${session.topics[0].title}".`);
+      prompts.push(`Explain the core concepts from ${session.documentName}.`);
+    } else {
+      prompts.push(`Summarize the key takeaways from ${session.documentName}.`);
+      prompts.push(`Create 5 active-recall questions from my study notes.`);
+    }
+
+    if (session.studyPlan && session.studyPlan.length > 0) {
+      prompts.push(`How should I structure my study session today?`);
+    } else {
+      prompts.push(`What topics from my material should I focus on first?`);
+    }
+
+    if (prompts.length < 4) {
+      prompts.push(`Give me practice problems based on my notes.`);
+    }
+
+    return prompts.slice(0, 4);
+  }, [session]);
 
   // Check if user is near bottom on manual scroll
   const handleScroll = () => {
@@ -58,7 +132,8 @@ export function Chat() {
   // Effect fallback for immediate message updates
   useEffect(() => {
     if (shouldAutoScrollRef.current && scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+      scrollContainerRef.current.scrollTop =
+        scrollContainerRef.current.scrollHeight;
     }
   }, [messages, status]);
 
@@ -88,10 +163,18 @@ export function Chat() {
     }
 
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+      scrollContainerRef.current.scrollTop =
+        scrollContainerRef.current.scrollHeight;
     }
 
-    await sendMessage({ text: trimmed });
+    await sendMessage(
+      { text: trimmed },
+      {
+        body: {
+          studyContext,
+        },
+      }
+    );
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -111,21 +194,57 @@ export function Chat() {
   return (
     <div className="flex flex-col h-full max-h-full max-w-4xl w-full mx-auto p-3 sm:p-6 min-h-0">
       {/* Header */}
-      <header className="shrink-0 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-3">
-        <div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-            StudyFlow AI Chat
-          </h1>
-          <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
-            Ask questions, review topics, generate quizzes, and break down complex concepts.
+      <header className="shrink-0 flex flex-col gap-2 border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-3">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+              StudyFlow AI Tutor
+            </h1>
+            <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+              Your personalized academic assistant grounded in your study
+              materials.
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 px-2.5 py-1 text-xs font-semibold text-emerald-800 dark:text-emerald-300">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Gemini Streaming
+            </span>
+          </div>
+        </div>
+
+        {/* Study Context Status Pill */}
+        {isHydrated && session && (
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            <span className="inline-flex items-center gap-1.5 rounded-md bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 text-xs font-medium text-blue-700 dark:text-blue-300">
+              📖 {session.documentName}
+            </span>
+            {session.topics && session.topics.length > 0 && (
+              <span className="inline-flex items-center rounded-md bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-xs text-zinc-600 dark:text-zinc-400">
+                {session.topics.length} Topics
+              </span>
+            )}
+            {session.weakAreas && session.weakAreas.length > 0 && (
+              <span className="inline-flex items-center rounded-md bg-red-50 dark:bg-red-950/60 px-2 py-0.5 text-xs font-medium text-red-700 dark:text-red-300">
+                {session.weakAreas.length} Weak{" "}
+                {session.weakAreas.length === 1 ? "Area" : "Areas"}
+              </span>
+            )}
+          </div>
+        )}
+
+        {isHydrated && !session && (
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">
+            💡{" "}
+            <Link
+              href="/upload"
+              className="underline hover:text-zinc-800 dark:hover:text-zinc-200"
+            >
+              Upload lecture notes
+            </Link>{" "}
+            to give your AI tutor personalized context.
           </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 px-2.5 py-1 text-xs font-semibold text-emerald-800 dark:text-emerald-300">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            Gemini Streaming
-          </span>
-        </div>
+        )}
       </header>
 
       {/* Messages Scroll Area */}
@@ -143,15 +262,19 @@ export function Chat() {
                 </div>
                 <div className="max-w-md">
                   <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
-                    How can I help you study today?
+                    {session
+                      ? `How can I help you study "${session.documentName}"?`
+                      : "How can I help you study today?"}
                   </h2>
                   <p className="text-xs sm:text-sm mt-1">
-                    Type a topic or select one of the suggested prompts below to start your study session.
+                    {session
+                      ? "Ask questions about your notes, request explanations on weak areas, or practice active recall."
+                      : "Type a topic or select one of the suggested prompts below to start your study session."}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-lg mt-2">
-                  {SUGGESTED_PROMPTS.map((prompt, idx) => (
+                  {suggestedPrompts.map((prompt, idx) => (
                     <button
                       key={idx}
                       type="button"
@@ -168,14 +291,19 @@ export function Chat() {
                 const isUser = message.role === "user";
                 const textContent =
                   message.parts
-                    ?.filter((p): p is { type: "text"; text: string } => p.type === "text")
+                    ?.filter(
+                      (p): p is { type: "text"; text: string } =>
+                        p.type === "text"
+                    )
                     .map((p) => p.text)
                     .join("") || "";
 
                 return (
                   <div
                     key={message.id}
-                    className={`flex gap-3 ${isUser ? "justify-end" : "justify-start"}`}
+                    className={`flex gap-3 ${
+                      isUser ? "justify-end" : "justify-start"
+                    }`}
                   >
                     {!isUser && (
                       <div className="h-8 w-8 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
@@ -192,7 +320,9 @@ export function Chat() {
                     >
                       {textContent ? (
                         isUser ? (
-                          <div className="whitespace-pre-wrap">{textContent}</div>
+                          <div className="whitespace-pre-wrap">
+                            {textContent}
+                          </div>
                         ) : (
                           <MarkdownContent content={textContent} />
                         )
@@ -247,7 +377,8 @@ export function Chat() {
                   <span className="font-semibold">Chat Error</span>
                 </div>
                 <p className="mt-1">
-                  {error.message || "An error occurred while streaming the response. Please try again."}
+                  {error.message ||
+                    "An error occurred while streaming the response. Please try again."}
                 </p>
               </div>
             )}
@@ -293,10 +424,17 @@ export function Chat() {
             onChange={(e) => {
               setInput(e.target.value);
               e.target.style.height = "auto";
-              e.target.style.height = `${Math.min(e.target.scrollHeight, 160)}px`;
+              e.target.style.height = `${Math.min(
+                e.target.scrollHeight,
+                160
+              )}px`;
             }}
             onKeyDown={handleKeyDown}
-            placeholder="Ask StudyFlow AI anything (e.g. explain a concept, create a quiz)..."
+            placeholder={
+              session
+                ? `Ask StudyFlow AI about "${session.documentName}" or your weak areas...`
+                : "Ask StudyFlow AI anything (e.g. explain a concept, create a quiz)..."
+            }
             aria-label="Ask StudyFlow AI a question"
             className="flex-1 max-h-40 min-h-[40px] resize-none bg-transparent px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 outline-none placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
           />
@@ -319,7 +457,15 @@ export function Chat() {
           </button>
         </div>
         <p className="mt-1 text-[11px] text-center text-zinc-500 dark:text-zinc-400">
-          Press <kbd className="font-mono bg-zinc-100 dark:bg-zinc-800 px-1 rounded">Enter</kbd> to send, <kbd className="font-mono bg-zinc-100 dark:bg-zinc-800 px-1 rounded">Shift + Enter</kbd> for new line.
+          Press{" "}
+          <kbd className="font-mono bg-zinc-100 dark:bg-zinc-800 px-1 rounded">
+            Enter
+          </kbd>{" "}
+          to send,{" "}
+          <kbd className="font-mono bg-zinc-100 dark:bg-zinc-800 px-1 rounded">
+            Shift + Enter
+          </kbd>{" "}
+          for new line.
         </p>
       </form>
     </div>
