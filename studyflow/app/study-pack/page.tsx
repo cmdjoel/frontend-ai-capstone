@@ -96,7 +96,28 @@ export default function StudyPackPage() {
   }
 
   if (!session) {
-    return null;
+    return (
+      <div className="flex flex-1 flex-col p-6 md:p-12">
+        <div className="mx-auto w-full max-w-3xl space-y-6">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+              No Study Session Found
+            </h1>
+            <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
+              You haven&apos;t uploaded any study material yet. Paste or upload your lecture notes to create a study pack.
+            </p>
+          </div>
+          <div className="pt-2">
+            <Link
+              href="/upload"
+              className="inline-flex h-10 items-center justify-center rounded-md bg-zinc-900 px-5 text-sm font-medium text-white transition hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
+            >
+              ← Go to Upload Notes
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const hasTopics =
