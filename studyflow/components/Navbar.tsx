@@ -7,12 +7,7 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "Upload Notes", href: "/upload" },
   { label: "Study Pack", href: "/study-pack" },
-  { label: "Summary", href: "/summary" },
-  { label: "Flashcards", href: "/flashcards" },
-  { label: "Quiz", href: "/quiz" },
-  { label: "Results", href: "/quiz/results" },
-  { label: "Weak Areas", href: "/weak-areas" },
-  { label: "Study Plan", href: "/study-plan" },
+  { label: "AI Tutor", href: "/chat" },
   { label: "Settings", href: "/settings" },
 ];
 
