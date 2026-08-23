@@ -202,7 +202,7 @@ export default function WeakAreasPage() {
               ))}
             </div>
 
-            <div className="mt-6 rounded-lg bg-zinc-50 p-4 text-xs text-zinc-600 dark:bg-zinc-850 dark:text-zinc-400">
+            <div className="mt-6 rounded-lg bg-zinc-50 p-4 text-xs text-zinc-600 dark:bg-zinc-900 dark:text-zinc-400">
               💡 <strong>Recommendation:</strong> Your personalized Study Plan
               will prioritize these {weakTopicSummaries.length} weak areas with
               tailored review sessions, active recall drills, and flashcard

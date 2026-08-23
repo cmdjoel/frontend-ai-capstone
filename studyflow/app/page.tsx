@@ -52,7 +52,7 @@ export default function HomePage() {
                     </Link>
                     <Link
                       href="/upload"
-                      className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl border border-zinc-300 dark:border-zinc-700 px-5 text-sm font-medium transition hover:bg-zinc-100 dark:hover:bg-zinc-850"
+                      className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl border border-zinc-300 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 dark:hover:text-zinc-100 px-5 text-sm font-medium transition"
                     >
                       Upload New Notes +
                     </Link>
@@ -67,7 +67,7 @@ export default function HomePage() {
                     </Link>
                     <Link
                       href="/chat"
-                      className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl border border-zinc-300 dark:border-zinc-700 px-5 text-sm font-medium transition hover:bg-zinc-100 dark:hover:bg-zinc-850"
+                      className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl border border-zinc-300 text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 dark:hover:text-zinc-100 px-5 text-sm font-medium transition"
                     >
                       Explore AI Tutor 💬
                     </Link>
