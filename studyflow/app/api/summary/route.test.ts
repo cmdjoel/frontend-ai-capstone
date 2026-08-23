@@ -50,6 +50,30 @@ describe("POST /api/summary", () => {
     expect(json.summary).toBe(mockSummary);
   });
 
+  it("handles optional explanationDetail settings properly", async () => {
+    const { generateText } = await import("ai");
+    const mockBriefSummary = "## Brief Summary\n- Core concept in one sentence.";
+
+    vi.mocked(generateText).mockResolvedValueOnce({
+      text: mockBriefSummary,
+    } as never);
+
+    const req = new Request("http://localhost:3000/api/summary", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sourceText: "Detailed study notes on operating system architectures.",
+        explanationDetail: "Brief",
+      }),
+    });
+
+    const res = await POST(req);
+    expect(res.status).toBe(200);
+
+    const json = await res.json();
+    expect(json.summary).toBe(mockBriefSummary);
+  });
+
   it("returns 500 when AI generation encounters an error", async () => {
     const { generateText } = await import("ai");
     vi.mocked(generateText).mockRejectedValueOnce(

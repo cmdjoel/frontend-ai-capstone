@@ -20,11 +20,20 @@ export interface StudyChatContext {
     duration: string;
     priority: string;
   }>;
+  explanationDetail?: "Brief" | "Standard" | "Detailed";
 }
 
 export function buildSystemPrompt(studyContext?: StudyChatContext | null): string {
+  const detail = studyContext?.explanationDetail;
+  const detailDirective =
+    detail === "Brief"
+      ? "- Detail Level: BRIEF. Provide concise, direct, and succinct answers focusing immediately on the core concepts without unnecessary filler."
+      : detail === "Detailed"
+      ? "- Detail Level: DETAILED. Provide comprehensive, thorough explanations with deep conceptual clarity, step-by-step reasoning, and illustrative examples."
+      : "- Detail Level: STANDARD. Provide clear, balanced explanations with concise examples where helpful.";
+
   if (!studyContext || !studyContext.documentName) {
-    return STUDYFLOW_SYSTEM_PROMPT;
+    return `${STUDYFLOW_SYSTEM_PROMPT}\n\nRESPONSE STYLE DIRECTIVE:\n${detailDirective}`;
   }
 
   const sections: string[] = [
@@ -83,10 +92,10 @@ export function buildSystemPrompt(studyContext?: StudyChatContext | null): strin
 
   sections.push(
     `TUTOR DIRECTIVES:`,
+    `${detailDirective}`,
     `- Tutor the student specifically on their study session material above.`,
     `- Ground explanations in their notes, topics, and summary whenever relevant.`,
-    `- If the student asks for practice, revision, or explanation of difficulties, prioritize their weak areas (${
-      studyContext.weakAreas?.join(", ") || "none specified"
+    `- If the student asks for practice, revision, or explanation of difficulties, prioritize their weak areas (${studyContext.weakAreas?.join(", ") || "none specified"
     }).`,
     `- Use interactive questions and active recall prompts to verify their understanding.`,
     `- If asked about their performance or study schedule, reference their quiz results and study plan directly.`,

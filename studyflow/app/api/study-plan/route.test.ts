@@ -58,6 +58,41 @@ describe("POST /api/study-plan", () => {
     expect(json.studyPlan).toEqual(mockStudyPlan);
   });
 
+  it("handles optional studyHoursPerDay and examDate settings safely", async () => {
+    const { generateObject } = await import("ai");
+    const mockStudyPlan = [
+      {
+        id: "day-1",
+        title: "Day 1: Intensive Revision",
+        focus: "Deadlock Detection",
+        tasks: ["Review algorithms", "Solve problems"],
+        duration: "3 hours",
+        priority: "high" as const,
+      },
+    ];
+
+    vi.mocked(generateObject).mockResolvedValueOnce({
+      object: { studyPlan: mockStudyPlan },
+    } as never);
+
+    const req = new Request("http://localhost:3000/api/study-plan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sourceText: "Operating system processes notes.",
+        weakAreas: ["Deadlocks"],
+        studyHoursPerDay: 3,
+        examDate: "2099-12-31",
+      }),
+    });
+
+    const res = await POST(req);
+    expect(res.status).toBe(200);
+
+    const json = await res.json();
+    expect(json.studyPlan).toEqual(mockStudyPlan);
+  });
+
   it("returns 500 when AI generation encounters an error", async () => {
     const { generateObject } = await import("ai");
     vi.mocked(generateObject).mockRejectedValueOnce(

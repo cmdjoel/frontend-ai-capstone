@@ -64,15 +64,15 @@ export async function POST(request: Request) {
     const weakAreasContext =
       weakAreas && weakAreas.length > 0
         ? `\n\nIDENTIFIED STUDENT WEAK AREAS (MUST BE PRIORITIZED HIGH IN EARLY DAYS):\n${weakAreas
-            .map((w, i) => `${i + 1}. ${w}`)
-            .join("\n")}`
+          .map((w, i) => `${i + 1}. ${w}`)
+          .join("\n")}`
         : "";
 
     const topicsContext =
       topics && topics.length > 0
         ? `\n\nCORE TOPICS IN STUDY PACK:\n${topics
-            .map((t) => `- ${t.title}${t.description ? `: ${t.description}` : ""}`)
-            .join("\n")}`
+          .map((t) => `- ${t.title}${t.description ? `: ${t.description}` : ""}`)
+          .join("\n")}`
         : "";
 
     const prompt = `You are an expert academic study strategist for StudyFlow.

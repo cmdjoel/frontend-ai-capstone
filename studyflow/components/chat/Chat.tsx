@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useChat } from "@ai-sdk/react";
 import { useStudySession } from "@/context/StudySessionContext";
+import { loadSettingsFromStorage } from "@/lib/settings/storage";
 import type { StudyChatContext } from "@/app/api/chat/route";
 import { MarkdownContent } from "./MarkdownContent";
 
@@ -26,7 +27,12 @@ export function Chat() {
 
   // Prepare contextual study session data for the AI Tutor
   const studyContext: StudyChatContext | undefined = useMemo(() => {
-    if (!session) return undefined;
+    const savedSettings = loadSettingsFromStorage();
+    const explanationDetail = savedSettings?.aiExplanationDetail;
+
+    if (!session) {
+      return explanationDetail ? { explanationDetail } : undefined;
+    }
 
     let quizPerformance: StudyChatContext["quizPerformance"] = undefined;
     if (session.quiz && session.quizAnswers && session.quiz.length > 0) {
@@ -56,6 +62,7 @@ export function Chat() {
         duration: p.duration,
         priority: p.priority,
       })),
+      explanationDetail,
     };
   }, [session]);
 

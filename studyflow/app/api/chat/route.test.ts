@@ -62,6 +62,25 @@ describe("POST /api/chat", () => {
     expect(prompt).toContain("60%");
   });
 
+  it("incorporates explanationDetail preference into system prompt correctly", () => {
+    const briefPrompt = buildSystemPrompt({
+      documentName: "Biology 101",
+      explanationDetail: "Brief",
+    });
+    expect(briefPrompt).toContain("Detail Level: BRIEF");
+
+    const detailedPrompt = buildSystemPrompt({
+      documentName: "Biology 101",
+      explanationDetail: "Detailed",
+    });
+    expect(detailedPrompt).toContain("Detail Level: DETAILED");
+
+    const noSessionBriefPrompt = buildSystemPrompt({
+      explanationDetail: "Brief",
+    });
+    expect(noSessionBriefPrompt).toContain("Detail Level: BRIEF");
+  });
+
   it("returns 500 when streaming encounters an unexpected error", async () => {
     const { streamText } = await import("ai");
     vi.mocked(streamText).mockImplementationOnce(() => {

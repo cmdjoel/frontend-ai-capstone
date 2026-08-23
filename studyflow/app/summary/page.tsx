@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useStudySession } from "@/context/StudySessionContext";
 import { MarkdownContent } from "@/components/chat/MarkdownContent";
+import { loadSettingsFromStorage } from "@/lib/settings/storage";
 
 interface SummaryResponse {
   summary: string;
@@ -28,6 +29,7 @@ export default function SummaryPage() {
     setError("");
 
     try {
+      const savedSettings = loadSettingsFromStorage();
       const response = await fetch("/api/summary", {
         method: "POST",
         headers: {
@@ -36,6 +38,7 @@ export default function SummaryPage() {
         body: JSON.stringify({
           sourceText: session.sourceText,
           topics: session.topics ?? undefined,
+          explanationDetail: savedSettings?.aiExplanationDetail,
         }),
       });
 

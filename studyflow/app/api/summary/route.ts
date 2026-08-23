@@ -17,12 +17,14 @@ const requestSchema = z.object({
       })
     )
     .optional(),
+  explanationDetail: z.enum(["Brief", "Standard", "Detailed"]).optional(),
 });
 
 export async function POST(request: Request) {
   try {
     const body: unknown = await request.json();
-    const { sourceText, topics } = requestSchema.parse(body);
+    const { sourceText, topics, explanationDetail = "Standard" } =
+      requestSchema.parse(body);
 
     const topicsContext =
       topics && topics.length > 0
@@ -31,10 +33,18 @@ export async function POST(request: Request) {
             .join("\n")}`
         : "";
 
+    const detailInstruction =
+      explanationDetail === "Brief"
+        ? "- Detail Level: BRIEF. Keep the summary concise, highly condensed, and focused strictly on the core takeaways without unnecessary elaboration."
+        : explanationDetail === "Detailed"
+        ? "- Detail Level: DETAILED. Provide an in-depth, comprehensive breakdown with thorough conceptual context, step-by-step mechanisms, and illustrative examples."
+        : "- Detail Level: STANDARD. Provide a clear, balanced overview with concise illustrative examples where appropriate.";
+
     const prompt = `You are an expert academic tutor for StudyFlow.
 Generate a comprehensive, well-structured, and clear study summary based on the provided student study material.
 
 Guidelines:
+${detailInstruction}
 - Focus on the most important academic concepts, principles, and key takeaways.
 - Use clear markdown structure with headings (## and ###), bullet points, bold key terms, and numbered steps where appropriate.
 - Include concise, essential definitions for critical terms.

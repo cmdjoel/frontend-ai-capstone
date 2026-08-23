@@ -62,13 +62,12 @@ export async function POST(request: Request) {
     const topicsContext =
       topics && topics.length > 0
         ? `\n\nCORE TOPICS IDENTIFIED IN STUDY PACK:\n${topics
-            .map(
-              (t) =>
-                `- ID: "${t.id}" | Title: "${t.title}"${
-                  t.description ? ` | Description: "${t.description}"` : ""
-                }`
-            )
-            .join("\n")}`
+          .map(
+            (t) =>
+              `- ID: "${t.id}" | Title: "${t.title}"${t.description ? ` | Description: "${t.description}"` : ""
+              }`
+          )
+          .join("\n")}`
         : "";
 
     const prompt = `You are an expert academic evaluator designing a practice assessment quiz for StudyFlow.

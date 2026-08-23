@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useStudySession } from "@/context/StudySessionContext";
+import { loadSettingsFromStorage } from "@/lib/settings/storage";
 import type { StudyPlanSession } from "@/lib/study-session/types";
 
 interface StudyPlanResponse {
@@ -31,6 +32,7 @@ export default function StudyPlanPage() {
     setError("");
 
     try {
+      const savedSettings = loadSettingsFromStorage();
       const response = await fetch("/api/study-plan", {
         method: "POST",
         headers: {
@@ -40,6 +42,8 @@ export default function StudyPlanPage() {
           sourceText: session.sourceText,
           topics: session.topics ?? undefined,
           weakAreas: session.weakAreas ?? undefined,
+          studyHoursPerDay: savedSettings?.studyHoursPerDay,
+          examDate: savedSettings?.examDate || undefined,
         }),
       });
 
