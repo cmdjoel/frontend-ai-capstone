@@ -14,7 +14,6 @@ const navItems = [
   { label: "Weak Areas", href: "/weak-areas" },
   { label: "Study Plan", href: "/study-plan" },
   { label: "Settings", href: "/settings" },
-  { label: "Health", href: "/health" },
 ];
 
 export function Navbar() {
