@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
+import SmoothCursor from "@/components/SmoothCursor";
 import { StudyWorkflowProgress } from "@/components/workflow/StudyWorkflowProgress";
 import { StudySessionProvider } from "@/context/StudySessionContext";
 import "./globals.css";
@@ -32,6 +33,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans antialiased">
         <StudySessionProvider>
+          <SmoothCursor />
           <Navbar />
           <StudyWorkflowProgress />
           <main className="flex flex-1 flex-col">{children}</main>
