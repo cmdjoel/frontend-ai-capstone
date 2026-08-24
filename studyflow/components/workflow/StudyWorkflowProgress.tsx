@@ -100,8 +100,8 @@ export function StudyWorkflowProgress() {
       aria-label="Study Workflow Progress"
       className="border-b border-zinc-200 bg-zinc-50/90 dark:border-zinc-850 dark:bg-zinc-900/50 backdrop-blur-sm"
     >
-      <div className="mx-auto max-w-7xl px-3 py-2.5 sm:px-6">
-        <ol className="flex items-center justify-between gap-1 sm:gap-2 overflow-x-auto no-scrollbar py-0.5">
+      <div className="mx-auto max-w-7xl px-3 py-2 sm:px-6">
+        <ol className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5 md:justify-between scroll-smooth">
           {WORKFLOW_STEPS.map((step, index) => {
             const isActive = index === activeStepIndex;
             const completed = isStepCompleted(index);
@@ -110,11 +110,11 @@ export function StudyWorkflowProgress() {
             return (
               <li
                 key={step.id}
-                className="flex items-center flex-1 min-w-0 last:flex-initial"
+                className="flex items-center shrink-0 md:flex-1 md:min-w-0 md:last:flex-initial"
               >
                 <Link
                   href={step.href}
-                  className={`group flex items-center gap-1.5 sm:gap-2 rounded-lg px-2 py-1 sm:px-2.5 sm:py-1.5 text-xs font-medium transition shrink-0 ${
+                  className={`group flex items-center gap-1.5 sm:gap-2 rounded-lg px-2.5 py-1 sm:px-2.5 sm:py-1.5 text-xs font-medium transition shrink-0 whitespace-nowrap ${
                     isActive
                       ? "bg-zinc-900 text-white shadow-sm dark:bg-zinc-100 dark:text-zinc-900 font-semibold"
                       : completed
@@ -140,7 +140,7 @@ export function StudyWorkflowProgress() {
                 {!isLast && (
                   <div
                     aria-hidden="true"
-                    className="flex-1 flex items-center justify-center px-1 sm:px-2 text-zinc-300 dark:text-zinc-700 select-none min-w-3"
+                    className="flex items-center justify-center px-1 sm:px-2 text-zinc-300 dark:text-zinc-700 select-none shrink-0 md:flex-1 md:min-w-3"
                   >
                     <span className="h-px w-full bg-zinc-200 dark:bg-zinc-800 hidden md:block" />
                     <span className="text-[10px] text-zinc-400 dark:text-zinc-600 md:hidden">
