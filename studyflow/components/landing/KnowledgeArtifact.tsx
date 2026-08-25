@@ -78,7 +78,7 @@ export function KnowledgeArtifact() {
       >
         {/* Layer 1: Backing Grid Plate (Deep Z) */}
         <div
-          className="absolute inset-0 rounded-3xl border border-zinc-800/80 bg-zinc-950/80 backdrop-blur-md shadow-2xl p-5 flex flex-col justify-between"
+          className="absolute inset-0 rounded-3xl border border-zinc-800/80 bg-zinc-950/95 shadow-2xl p-5 flex flex-col justify-between"
           style={{
             transform: "translateZ(-50px)",
           }}
@@ -102,7 +102,7 @@ export function KnowledgeArtifact() {
 
         {/* Layer 2: Main Interactive Dynamic Prism (Z: 0) */}
         <div
-          className={`absolute inset-4 rounded-2xl border bg-gradient-to-br p-5 backdrop-blur-xl shadow-xl transition-all duration-700 flex flex-col justify-between ${layers[activeLayer].color}`}
+          className={`absolute inset-4 rounded-2xl border bg-gradient-to-br p-5 backdrop-blur-xl shadow-xl transition-colors duration-700 flex flex-col justify-between ${layers[activeLayer].color}`}
           style={{
             transform: "translateZ(0px)",
           }}
@@ -111,7 +111,7 @@ export function KnowledgeArtifact() {
             <span className="text-[10px] font-mono tracking-wider font-semibold uppercase opacity-90">
               {layers[activeLayer].tag}
             </span>
-            <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-medium backdrop-blur-sm">
+            <span className="rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-medium">
               {layers[activeLayer].badge}
             </span>
           </div>
@@ -123,7 +123,7 @@ export function KnowledgeArtifact() {
             <div className="flex items-center gap-2">
               <div className="h-1 flex-1 rounded-full bg-white/20 overflow-hidden">
                 <div
-                  className="h-full bg-white transition-all duration-700"
+                  className="h-full bg-white transition-[width] duration-700"
                   style={{
                     width: `${((activeLayer + 1) / layers.length) * 100}%`,
                   }}
@@ -146,7 +146,7 @@ export function KnowledgeArtifact() {
 
         {/* Layer 3: Floating Satellite Card (Z: +45px) */}
         <div
-          className="absolute -right-4 -top-4 w-44 rounded-xl border border-zinc-700/60 bg-zinc-900/90 p-3 shadow-2xl backdrop-blur-md transition-transform duration-300"
+          className="absolute -right-4 -top-4 w-44 rounded-xl border border-zinc-700/60 bg-zinc-900/95 p-3 shadow-2xl transition-transform duration-300"
           style={{
             transform: "translateZ(45px)",
           }}
@@ -162,7 +162,7 @@ export function KnowledgeArtifact() {
 
         {/* Layer 4: Floating Satellite Card (Z: +65px) */}
         <div
-          className="absolute -left-4 -bottom-4 w-48 rounded-xl border border-zinc-700/60 bg-zinc-900/90 p-3 shadow-2xl backdrop-blur-md transition-transform duration-300"
+          className="absolute -left-4 -bottom-4 w-48 rounded-xl border border-zinc-700/60 bg-zinc-900/95 p-3 shadow-2xl transition-transform duration-300"
           style={{
             transform: "translateZ(65px)",
           }}
@@ -187,11 +187,10 @@ export function KnowledgeArtifact() {
               type="button"
               onClick={() => setActiveLayer(idx)}
               aria-label={`Show transformation phase ${idx + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                activeLayer === idx
+              className={`h-2 rounded-full transition-[width,background-color] duration-300 ${activeLayer === idx
                   ? "w-6 bg-zinc-100 dark:bg-zinc-100"
                   : "w-2 bg-zinc-600 hover:bg-zinc-400"
-              }`}
+                }`}
             />
           ))}
         </div>
