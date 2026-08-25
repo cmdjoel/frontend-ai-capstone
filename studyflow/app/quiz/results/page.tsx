@@ -9,7 +9,7 @@ export default function QuizResultsPage() {
   if (!isHydrated) {
     return (
       <div className="flex flex-1 items-center justify-center p-6">
-        <p className="text-sm text-zinc-500">Loading your quiz results...</p>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">Loading your quiz results...</p>
       </div>
     );
   }
@@ -20,19 +20,19 @@ export default function QuizResultsPage() {
         <div className="mx-auto w-full max-w-3xl space-y-6">
           <div>
             <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-              No Study Session Found
+              No Quiz Results Found
             </h1>
             <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-              You haven&apos;t uploaded any study material yet. Create a study
-              session by uploading or pasting your lecture notes first.
+              You haven&apos;t completed a quiz for this study session yet. Take
+              the practice quiz to assess your understanding.
             </p>
           </div>
           <div className="pt-2">
             <Link
-              href="/upload"
+              href="/quiz"
               className="inline-flex h-10 items-center justify-center rounded-md bg-zinc-900 px-5 text-sm font-medium text-white transition hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
             >
-              ← Go to Upload Notes
+              ← Go to Quiz
             </Link>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function QuizResultsPage() {
     <div className="flex flex-1 flex-col p-6 md:p-12">
       <div className="mx-auto w-full max-w-3xl space-y-6">
         <div>
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
             Assessment Results
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
@@ -117,14 +117,14 @@ export default function QuizResultsPage() {
         <div className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 md:p-8">
           <div className="flex flex-col justify-between gap-4 border-b border-zinc-200 pb-6 sm:flex-row sm:items-center dark:border-zinc-800">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              <span className="text-xs font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
                 Overall Score
               </span>
               <div className="mt-1 flex items-baseline gap-3">
                 <p className="text-4xl font-extrabold text-zinc-900 dark:text-zinc-50">
                   {percentage}%
                 </p>
-                <span className="text-sm text-zinc-500">
+                <span className="text-sm text-zinc-600 dark:text-zinc-400">
                   ({correctCount} of {totalQuestions} correct)
                 </span>
               </div>
@@ -139,19 +139,19 @@ export default function QuizResultsPage() {
 
           <div className="grid grid-cols-2 gap-4 pt-6 sm:grid-cols-3">
             <div className="rounded-lg border border-zinc-100 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-950">
-              <span className="text-xs text-zinc-500">Correct Answers</span>
+              <span className="text-xs text-zinc-600 dark:text-zinc-400">Correct Answers</span>
               <p className="mt-1 text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                 {correctCount}
               </p>
             </div>
             <div className="rounded-lg border border-zinc-100 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-950">
-              <span className="text-xs text-zinc-500">Incorrect Answers</span>
+              <span className="text-xs text-zinc-600 dark:text-zinc-400">Incorrect Answers</span>
               <p className="mt-1 text-2xl font-bold text-red-600 dark:text-red-400">
                 {incorrectCount}
               </p>
             </div>
             <div className="col-span-2 rounded-lg border border-zinc-100 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-950 sm:col-span-1">
-              <span className="text-xs text-zinc-500">Total Questions</span>
+              <span className="text-xs text-zinc-600 dark:text-zinc-400">Total Questions</span>
               <p className="mt-1 text-2xl font-bold text-zinc-900 dark:text-zinc-100">
                 {totalQuestions}
               </p>
@@ -190,7 +190,7 @@ export default function QuizResultsPage() {
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-100 pb-3 dark:border-zinc-800">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-semibold text-zinc-500">
+                      <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
                         Question {idx + 1}
                       </span>
                       {topic && (

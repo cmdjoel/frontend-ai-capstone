@@ -73,7 +73,7 @@ export default function SummaryPage() {
   if (!isHydrated) {
     return (
       <div className="flex flex-1 items-center justify-center p-6">
-        <p className="text-sm text-zinc-500">Loading your study session...</p>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">Loading your study session...</p>
       </div>
     );
   }
@@ -111,7 +111,7 @@ export default function SummaryPage() {
     <div className="flex flex-1 flex-col p-6 md:p-12">
       <div className="mx-auto w-full max-w-3xl space-y-6">
         <div>
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
             Study Summary
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
@@ -135,7 +135,7 @@ export default function SummaryPage() {
                   takeaways from your notes for active recall and revision.
                 </p>
                 {hasTopics && (
-                  <p className="mt-2 text-xs font-medium text-zinc-500">
+                  <p className="mt-2 text-xs font-medium text-zinc-600 dark:text-zinc-400">
                     ✓ Will align with the {session.topics?.length} topics
                     identified in your Study Pack.
                   </p>
@@ -147,7 +147,7 @@ export default function SummaryPage() {
                 onClick={generateSummary}
                 className="inline-flex h-10 items-center justify-center rounded-md bg-zinc-900 px-5 text-sm font-medium text-white transition hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
               >
-                Generate Summary →
+                Generate Study Summary →
               </button>
             </div>
           )}
@@ -155,11 +155,11 @@ export default function SummaryPage() {
           {isGenerating && (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-900 dark:border-zinc-700 dark:border-t-zinc-100" />
-              <h2 className="mt-5 text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                Generating your study summary
-              </h2>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                Synthesizing key concepts, definitions, and takeaways...
+              <p className="mt-4 text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                Synthesizing your summary with Gemini AI...
+              </p>
+              <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">
+                This may take a few moments.
               </p>
             </div>
           )}
@@ -187,7 +187,7 @@ export default function SummaryPage() {
                   <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                     Comprehensive Summary
                   </h2>
-                  <p className="mt-0.5 text-xs text-zinc-500">
+                  <p className="mt-0.5 text-xs text-zinc-600 dark:text-zinc-400">
                     Generated from your study material
                   </p>
                 </div>

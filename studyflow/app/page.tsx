@@ -81,7 +81,7 @@ export default function HomePage() {
                   <div className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-100">
                     6-in-1
                   </div>
-                  <div className="text-[11px] text-zinc-500">
+                  <div className="text-[11px] text-zinc-600 dark:text-zinc-400 font-medium">
                     Learning Loop
                   </div>
                 </div>
@@ -89,7 +89,7 @@ export default function HomePage() {
                   <div className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-100">
                     100%
                   </div>
-                  <div className="text-[11px] text-zinc-500">
+                  <div className="text-[11px] text-zinc-600 dark:text-zinc-400 font-medium">
                     Grounded in Notes
                   </div>
                 </div>
@@ -97,7 +97,7 @@ export default function HomePage() {
                   <div className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-100">
                     Real-time
                   </div>
-                  <div className="text-[11px] text-zinc-500">
+                  <div className="text-[11px] text-zinc-600 dark:text-zinc-400 font-medium">
                     Gemini AI Tutor
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default function HomePage() {
       <section className="relative w-full py-16 sm:py-24 px-4 sm:px-6 bg-zinc-50 dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-6xl space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-zinc-500">
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">
               <span className="h-1.5 w-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100" />
               HOW STUDYFLOW WORKS
             </div>
@@ -222,7 +222,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="text-xs text-zinc-500 font-mono">
+          <div className="text-xs text-zinc-600 dark:text-zinc-400 font-mono">
             Powered by Vercel AI SDK & Gemini
           </div>
         </div>

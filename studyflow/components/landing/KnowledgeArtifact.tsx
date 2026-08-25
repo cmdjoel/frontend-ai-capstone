@@ -117,9 +117,9 @@ export function KnowledgeArtifact() {
           </div>
 
           <div className="my-auto space-y-2">
-            <h4 className="text-lg sm:text-xl font-bold tracking-tight text-white leading-tight">
+            <p className="text-lg sm:text-xl font-bold tracking-tight text-white leading-tight">
               {layers[activeLayer].title}
-            </h4>
+            </p>
             <div className="flex items-center gap-2">
               <div className="h-1 flex-1 rounded-full bg-white/20 overflow-hidden">
                 <div
@@ -178,7 +178,7 @@ export function KnowledgeArtifact() {
 
         {/* Interactive Layer Dots Selector */}
         <div
-          className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2"
+          className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-1"
           style={{ transform: "translateZ(20px)" }}
         >
           {layers.map((_, idx) => (
@@ -187,11 +187,16 @@ export function KnowledgeArtifact() {
               type="button"
               onClick={() => setActiveLayer(idx)}
               aria-label={`Show transformation phase ${idx + 1}`}
-              className={`h-2 rounded-full transition-[width,background-color] duration-300 ${activeLayer === idx
-                  ? "w-6 bg-zinc-100 dark:bg-zinc-100"
-                  : "w-2 bg-zinc-600 hover:bg-zinc-400"
+              className="flex h-11 min-w-[44px] items-center justify-center p-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400"
+            >
+              <span
+                className={`h-2 rounded-full transition-[width,background-color] duration-300 ${
+                  activeLayer === idx
+                    ? "w-6 bg-zinc-100 dark:bg-zinc-100"
+                    : "w-2 bg-zinc-500 hover:bg-zinc-400"
                 }`}
-            />
+              />
+            </button>
           ))}
         </div>
       </div>

@@ -64,7 +64,7 @@ export function EnterWorkspacePortal() {
         </div>
 
         {/* Status Indicators */}
-        <div className="flex flex-wrap items-center justify-center gap-6 pt-6 text-xs font-mono text-zinc-500">
+        <div className="flex flex-wrap items-center justify-center gap-6 pt-6 text-xs font-mono text-zinc-400">
           <span className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             Vercel AI SDK & Gemini 3.1

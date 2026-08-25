@@ -53,7 +53,7 @@ export default function UploadNotesPage() {
   if (!isHydrated) {
     return (
       <div className="flex flex-1 items-center justify-center p-6">
-        <p className="text-sm text-zinc-500">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
           Loading StudyFlow...
         </p>
       </div>
@@ -64,7 +64,7 @@ export default function UploadNotesPage() {
     <div className="flex flex-1 flex-col p-6 md:p-12">
       <div className="mx-auto w-full max-w-3xl space-y-6">
         <div>
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
             Study Material
           </p>
 
@@ -83,12 +83,16 @@ export default function UploadNotesPage() {
           className="space-y-6 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 md:p-8"
         >
           <div className="space-y-2">
-            <label
-              htmlFor="documentName"
-              className="text-sm font-medium text-zinc-900 dark:text-zinc-100"
-            >
-              Study material name
-            </label>
+            <div className="flex items-center justify-between">
+              <label
+                htmlFor="documentName"
+                className="text-sm font-medium text-zinc-900 dark:text-zinc-100"
+              >
+                Study material name
+              </label>
+
+              <span className="text-xs text-zinc-600 dark:text-zinc-400">Optional</span>
+            </div>
 
             <input
               id="documentName"
@@ -104,7 +108,7 @@ export default function UploadNotesPage() {
           </div>
 
           <div className="space-y-2">
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between">
               <label
                 htmlFor="sourceText"
                 className="text-sm font-medium text-zinc-900 dark:text-zinc-100"
@@ -112,7 +116,7 @@ export default function UploadNotesPage() {
                 Your notes
               </label>
 
-              <span className="text-xs text-zinc-500">
+              <span className="text-xs text-zinc-600 dark:text-zinc-400">
                 {sourceText.trim().length.toLocaleString()} characters
               </span>
             </div>
@@ -155,7 +159,7 @@ export default function UploadNotesPage() {
           </div>
         </form>
 
-        <p className="text-center text-xs text-zinc-500">
+        <p className="text-center text-xs text-zinc-600 dark:text-zinc-400">
           PDF upload and document extraction will be added next. For now, paste
           your study material directly into StudyFlow.
         </p>

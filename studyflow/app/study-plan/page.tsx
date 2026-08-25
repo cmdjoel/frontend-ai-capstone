@@ -86,7 +86,7 @@ export default function StudyPlanPage() {
   if (!isHydrated) {
     return (
       <div className="flex flex-1 items-center justify-center p-6">
-        <p className="text-sm text-zinc-500">Loading your study session...</p>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">Loading your study session...</p>
       </div>
     );
   }
@@ -125,7 +125,7 @@ export default function StudyPlanPage() {
     <div className="flex flex-1 flex-col p-6 md:p-12">
       <div className="mx-auto w-full max-w-3xl space-y-6">
         <div>
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
             Personalized Roadmap
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
@@ -203,7 +203,7 @@ export default function StudyPlanPage() {
                   <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                     Daily Study Milestones
                   </h2>
-                  <p className="mt-0.5 text-xs text-zinc-500">
+                  <p className="mt-0.5 text-xs text-zinc-600 dark:text-zinc-400">
                     {studyPlan.length}-session strategic learning roadmap for{" "}
                     {session.documentName}
                   </p>
@@ -248,7 +248,7 @@ export default function StudyPlanPage() {
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <span className="text-xs text-zinc-500 font-medium">
+                          <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">
                             ⏱️ {planSession.duration}
                           </span>
                           <span
@@ -265,7 +265,7 @@ export default function StudyPlanPage() {
                         </p>
 
                         <div className="space-y-1 pt-1">
-                          <span className="text-xs font-semibold text-zinc-500">
+                          <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
                             Recommended Action Tasks:
                           </span>
                           <ul className="space-y-1 pl-4 text-xs text-zinc-700 dark:text-zinc-300 list-disc">

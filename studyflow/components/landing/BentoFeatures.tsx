@@ -11,7 +11,7 @@ export function BentoFeatures() {
       <div className="mx-auto max-w-6xl space-y-12">
         {/* Section Header */}
         <div className="max-w-2xl space-y-3">
-          <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-zinc-500">
+          <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">
             <span className="h-1.5 w-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100" />
             ENGINEERED FOR RETENTION
           </div>
@@ -30,7 +30,7 @@ export function BentoFeatures() {
           <div className="md:col-span-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/60 p-6 sm:p-8 flex flex-col justify-between space-y-6 hover:border-zinc-400 dark:hover:border-zinc-700 transition">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-bold text-zinc-400">
+                <span className="text-xs font-mono font-bold text-zinc-600 dark:text-zinc-400">
                   01 // STRUCTURE
                 </span>
                 <span className="rounded-full bg-blue-100 dark:bg-blue-950 px-2.5 py-0.5 text-xs font-semibold text-blue-700 dark:text-blue-300">
@@ -48,9 +48,9 @@ export function BentoFeatures() {
 
             {/* Visual Mini Mockup */}
             <div className="space-y-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-4 shadow-sm">
-              <div className="flex items-center justify-between text-xs font-medium text-zinc-500">
+              <div className="flex items-center justify-between text-xs font-medium text-zinc-600 dark:text-zinc-400">
                 <span>Extracted Syllabus</span>
-                <span className="text-emerald-600 font-semibold">✓ 4 Core Topics</span>
+                <span className="text-emerald-600 dark:text-emerald-400 font-semibold">✓ 4 Core Topics</span>
               </div>
               <div className="grid grid-cols-2 gap-2 pt-1">
                 <div className="rounded-lg bg-zinc-100 dark:bg-zinc-900 p-2.5 text-xs font-semibold text-zinc-800 dark:text-zinc-200">
@@ -80,7 +80,7 @@ export function BentoFeatures() {
           <div className="md:col-span-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/60 p-6 sm:p-8 flex flex-col justify-between space-y-6 hover:border-zinc-400 dark:hover:border-zinc-700 transition">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-bold text-zinc-400">
+                <span className="text-xs font-mono font-bold text-zinc-600 dark:text-zinc-400">
                   02 // RECALL
                 </span>
                 <span className="rounded-full bg-emerald-100 dark:bg-emerald-950 px-2.5 py-0.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
@@ -101,9 +101,9 @@ export function BentoFeatures() {
               onClick={() => setFlashcardFlipped((prev) => !prev)}
               className="group relative h-36 w-full cursor-pointer rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 p-4 shadow-sm transition-all hover:border-zinc-500 flex flex-col justify-between"
             >
-              <div className="flex items-center justify-between text-[10px] font-mono text-zinc-500">
+              <div className="flex items-center justify-between text-[10px] font-mono text-zinc-600 dark:text-zinc-400">
                 <span>{flashcardFlipped ? "ANSWER // REVEALED" : "QUESTION // PROMPT"}</span>
-                <span className="text-xs text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-200">
+                <span className="text-xs text-zinc-600 group-hover:text-zinc-800 dark:text-zinc-400 dark:group-hover:text-zinc-200">
                   (Click to flip ⟳)
                 </span>
               </div>
@@ -114,7 +114,7 @@ export function BentoFeatures() {
                   : "How does Virtual Memory solve physical RAM limitations?"}
               </p>
 
-              <div className="text-[10px] text-center font-mono text-zinc-400">
+              <div className="text-[10px] text-center font-mono text-zinc-600 dark:text-zinc-400 font-medium">
                 {flashcardFlipped ? "✓ Verified Active Recall" : "Tap to verify knowledge"}
               </div>
             </div>
@@ -131,7 +131,7 @@ export function BentoFeatures() {
           <div className="md:col-span-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/60 p-6 sm:p-8 flex flex-col justify-between space-y-6 hover:border-zinc-400 dark:hover:border-zinc-700 transition">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-bold text-zinc-400">
+                <span className="text-xs font-mono font-bold text-zinc-600 dark:text-zinc-400">
                   03 // DIAGNOSTICS
                 </span>
                 <span className="rounded-full bg-red-100 dark:bg-red-950 px-2.5 py-0.5 text-xs font-semibold text-red-700 dark:text-red-300">
@@ -172,7 +172,7 @@ export function BentoFeatures() {
           <div className="md:col-span-7 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/60 p-6 sm:p-8 flex flex-col justify-between space-y-6 hover:border-zinc-400 dark:hover:border-zinc-700 transition">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-bold text-zinc-400">
+                <span className="text-xs font-mono font-bold text-zinc-600 dark:text-zinc-400">
                   04 // ROADMAP & TUTOR
                 </span>
                 <span className="rounded-full bg-purple-100 dark:bg-purple-950 px-2.5 py-0.5 text-xs font-semibold text-purple-700 dark:text-purple-300">
@@ -195,7 +195,7 @@ export function BentoFeatures() {
                 <span className="font-bold text-zinc-900 dark:text-zinc-100">
                   Day 1: Virtual Memory Drills
                 </span>
-                <p className="text-zinc-500 text-[11px]">
+                <p className="text-zinc-600 dark:text-zinc-400 text-[11px] font-medium">
                   ⏱️ 45m · High Priority (Weak Area)
                 </p>
               </div>
@@ -203,7 +203,7 @@ export function BentoFeatures() {
                 <span className="font-bold text-zinc-900 dark:text-zinc-100">
                   Day 2: AI Tutor Chat Review
                 </span>
-                <p className="text-zinc-500 text-[11px]">
+                <p className="text-zinc-600 dark:text-zinc-400 text-[11px] font-medium">
                   ⏱️ 30m · Interactive Socratic Drill
                 </p>
               </div>

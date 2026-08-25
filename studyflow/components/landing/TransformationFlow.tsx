@@ -145,7 +145,7 @@ export function TransformationFlow() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-zinc-200 dark:border-zinc-800">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-zinc-500">
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">
               <span className="h-1.5 w-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100" />
               COGNITIVE ARCHITECTURE
             </div>
@@ -158,7 +158,7 @@ export function TransformationFlow() {
             </p>
           </div>
 
-          <div className="text-xs font-mono text-zinc-500">
+          <div className="text-xs font-mono text-zinc-600 dark:text-zinc-400">
             PHASE 0{activeStepIndex + 1} OF 0{STEPS.length} // STEP SELECTOR
           </div>
         </div>
@@ -182,7 +182,7 @@ export function TransformationFlow() {
                   className={`text-xs font-mono font-bold ${
                     isActive
                       ? "text-zinc-400 dark:text-zinc-600"
-                      : "text-zinc-400 dark:text-zinc-500"
+                      : "text-zinc-600 dark:text-zinc-400"
                   }`}
                 >
                   {step.number}
@@ -203,7 +203,7 @@ export function TransformationFlow() {
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-900 text-xs font-mono font-bold text-white dark:bg-zinc-100 dark:text-zinc-900">
                 {activeStep.number}
               </span>
-              <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">
+              <span className="text-xs font-mono uppercase tracking-wider text-zinc-600 dark:text-zinc-400 font-semibold">
                 {activeStep.category}
               </span>
             </div>
@@ -233,7 +233,7 @@ export function TransformationFlow() {
           {/* Right Column: Glassmorphic Live Simulation Preview */}
           <div className="lg:col-span-5 rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-950/80 p-6 space-y-4 shadow-inner">
             <div className="flex items-center justify-between border-b border-zinc-200/80 dark:border-zinc-800 pb-3">
-              <span className="text-xs font-mono font-semibold text-zinc-500 uppercase">
+              <span className="text-xs font-mono font-semibold text-zinc-600 dark:text-zinc-400 uppercase">
                 {activeStep.outputPreview.title}
               </span>
               <span className="rounded-full bg-zinc-200 dark:bg-zinc-800 px-2.5 py-0.5 text-[10px] font-mono font-semibold text-zinc-700 dark:text-zinc-300">
@@ -253,7 +253,7 @@ export function TransformationFlow() {
               ))}
             </div>
 
-            <div className="flex items-center justify-between pt-2 text-[10px] font-mono text-zinc-400">
+            <div className="flex items-center justify-between pt-2 text-[10px] font-mono text-zinc-600 dark:text-zinc-400 font-medium">
               <span>REAL-TIME ENGINE</span>
               <span>SYNCHRONIZED WITH SESSION</span>
             </div>

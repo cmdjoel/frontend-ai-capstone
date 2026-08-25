@@ -241,7 +241,7 @@ export function Chat() {
         )}
 
         {isHydrated && !session && (
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="text-xs text-zinc-600 dark:text-zinc-400">
             💡{" "}
             <Link
               href="/upload"
@@ -263,7 +263,7 @@ export function Chat() {
         >
           <div ref={messagesContentRef} className="space-y-4 pb-4">
             {messages.length === 0 ? (
-              <div className="flex flex-col items-center justify-center min-h-[300px] h-full text-center p-6 text-zinc-500 dark:text-zinc-400 space-y-4">
+              <div className="flex flex-col items-center justify-center min-h-[300px] h-full text-center p-6 text-zinc-600 dark:text-zinc-400 space-y-4">
                 <div className="h-12 w-12 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-xl font-bold text-zinc-900 dark:text-zinc-100">
                   SF
                 </div>
@@ -338,7 +338,7 @@ export function Chat() {
                           <span className="h-2 w-2 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-bounce [animation-delay:-0.3s]" />
                           <span className="h-2 w-2 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-bounce [animation-delay:-0.15s]" />
                           <span className="h-2 w-2 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-bounce" />
-                          <span className="ml-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                          <span className="ml-2 text-xs font-medium text-zinc-600 dark:text-zinc-400">
                             Thinking...
                           </span>
                         </div>
@@ -366,7 +366,7 @@ export function Chat() {
                     <span className="h-2 w-2 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-bounce [animation-delay:-0.3s]" />
                     <span className="h-2 w-2 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-bounce [animation-delay:-0.15s]" />
                     <span className="h-2 w-2 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-bounce" />
-                    <span className="ml-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                    <span className="ml-2 text-xs font-medium text-zinc-600 dark:text-zinc-400">
                       StudyFlow is thinking...
                     </span>
                   </div>
@@ -463,7 +463,7 @@ export function Chat() {
             </svg>
           </button>
         </div>
-        <p className="mt-1 text-[11px] text-center text-zinc-500 dark:text-zinc-400">
+        <p className="mt-1 text-[11px] text-center text-zinc-600 dark:text-zinc-400">
           Press{" "}
           <kbd className="font-mono bg-zinc-100 dark:bg-zinc-800 px-1 rounded">
             Enter

@@ -119,7 +119,7 @@ export default function QuizPage() {
   if (!isHydrated) {
     return (
       <div className="flex flex-1 items-center justify-center p-6">
-        <p className="text-sm text-zinc-500">Loading your study session...</p>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">Loading your study session...</p>
       </div>
     );
   }
@@ -170,7 +170,7 @@ export default function QuizPage() {
     <div className="flex flex-1 flex-col p-6 md:p-12">
       <div className="mx-auto w-full max-w-3xl space-y-6">
         <div>
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
             Practice Quiz
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
